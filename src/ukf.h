@@ -2,6 +2,8 @@
 #define UKF_H
 
 #include "Eigen/Dense"
+#include <iostream>
+#include <vector>
 #include "measurement_package.h"
 
 class UKF {
@@ -40,7 +42,6 @@ class UKF {
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
-
 
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -95,6 +96,23 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
+  // Augmented state vector
+  Eigen::VectorXd x_aug_;
+
+  // Augmented state covariance matrix
+  Eigen::MatrixXd P_aug_;
+
+  // Radar measurement noise covariance
+  Eigen::MatrixXd R_radar_;
+
+  // Lidar measurement noise covariance
+  Eigen::MatrixXd R_lidar_;
+
+  std::vector<double> NIS_radar_;
+  std::vector<double> NIS_lidar_;
+
+  void printNIS();
 };
 
 #endif  // UKF_H

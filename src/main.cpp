@@ -40,4 +40,9 @@ int main(int argc, char** argv)
 		
 	}
 
+	// For evaluation
+	highway.traffic[0].ukf.printNIS();
+  highway.traffic[1].ukf.printNIS();
+  highway.traffic[2].ukf.printNIS();
+
 }
